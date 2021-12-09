@@ -18,28 +18,30 @@
 
         <div class="mydiv1">
             <label class="lbl1">암호</label><input type="password" /><br />
-        </div>
+        
 
         <div class="mydiv1">
-            <label class="lbl1">중식</label>
-        <input type="checkbox" />짜장면
-        <input type="checkbox" />짬뽕
-        <input type="checkbox" />볶음밥
-        <br />
-        </div>
-
-        <div class="mydiv1">
-            <label class="lbl1">양</label> 
-            <input type="radio" name="a" />1인분씩
-            <input type="radio" name="a" />2인분씩
-            <input type="radio" name="a" />3인분씩
+            <label class="lbl1">중식(여러개 선택)</label>
+            <input type="checkbox" class="chk1" value="짜장면" />짜장면 
+            <input type="checkbox" class="chk1" value="짬뽕"/>짬뽕
+            <input type="checkbox" class="chk1" value="볶음밥"/>볶음밥
+            <input type="button" value="체크된 개수 확인" id="btn1" />
             <br />
-        </div>
+    
+
+        <div class="mydiv1">
+            <label class="lbl1">양(1개만 선택)</label> 
+            <input type="radio" name="a" value="1인분씩"/>1인분씩
+            <input type="radio" name="a" value="2인분씩"/>2인분씩
+            <input type="radio" name="a" value="3인분씩"/>3인분씩
+            <input type="button" value="체크된 개수 확인" id="btn2" />
+            <br />
+        
 
         <div class="mydiv1">
             <label class="lbl1">부탁사항</label><br />
             <textarea rows="10" cols="100"></textarea>
-        </div>
+        
 
         <div class="mydiv1">
             <label class="lbl1">짬뽕 맵기</label>
@@ -48,23 +50,49 @@
                 <option>2단계</option>
                 <option>3단계</option>
             </select><br />
-        </div>
 
         <div class="mydiv1">
             <label class="lbl1">눌러보세요</label>
                 <input type="button" value="눌러보세요" /><br />
-        </div>
 
         <div class="mydiv1">
             <label class="lbl1">파일첨부</label>
             <input type="file" /><br /><br />
-        </div>
 
         <div class="mydiv1">
             <label class="lbl1">날짜</label>
             <input type="date" /><br />
         </div>
 
-    </div>
+        <script>
+            //1개 <input />
+            //const chk1 = document.getElementById('userid');
+            //console.log(id);
+            //3개 [<input />,<input /><input /] [배열]
+
+            const btn1 = document.getElementById('btn1');
+
+            btn1.addEventListener('click', function(){
+            
+            const chk1 = document.getElementsByClassName('chk1');
+
+            //for(const 임시변수 of 배열변수)
+            for(const tmp of chk1){
+                if(tmp.checked === true) {
+                    console.log(tmp.value);
+                }
+            }
+        });
+        
+        const btn2 = document.getElementById('btn2');
+        btn2.addEventListener('click', function(){
+            const chk1 = document.getElementsByName('a');
+            for(const tmp of chk1){
+                if(tmp.checked === true) {
+                    console.log(tmp.value);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

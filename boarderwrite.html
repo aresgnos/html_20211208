@@ -5,68 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>boaderwrite.html</title>
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/mystyle1.css" rel="stylesheet" />
+
+    <style>
+      .ck-editor__editable_inline {
+        min-height: 400px;
+      }
+    </style>
 </head>
 <body>
     <div class="container">
+      <div class="mydiv1">
+        <label class="lbl1">제목</label>
+        <input type="text" placeholder="제목입력" id="title" />
+      </div>
 
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-              <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </nav>
+      <div class="mydiv1">
+        <label class="lbl1">내용</label>
+        <div style="display:inline-block; width:500px;">
+        <textarea placeholder="내용입력" id="content" style="display:none;"/></textarea>
+      </div>
 
-        <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-              The current button
-            </button>
-            <button type="button" class="list-group-item list-group-item-action">A second item</button>
-            <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-            <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
-          </div>
+      <div class="mydiv1">
+        <label class="lbl1">작성자</label>
+        <input type="text" placeholder="작성자" id="writer" />
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Library</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Data</li>
-            </ol>
-          </nav>
+      <div class="mydiv1">
+        <label class="lbl1"></label>
+        <input type="button" value="글쓰기" id="btn1" />
+        <a href="board.html"><input type="button" value="게시판목록">
+        </div>
+      </div>
 
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
+    <script src="js/ckeditor.js"></script>
+    <script>
 
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
+     
+      // textarea 태그를 찾기
+      const cont = document.getElementById('content');
+      // const cont = document.querySelctor('#content');
 
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+      //변경된 textarea => editor로 변경
+      var editor;
+      ClassicEditor.create(cont).then(function(edt){
+        editor = edt;
+      });
 
-        <button type="button" class="btn btn-primary">Primary</button>
+      //유효성 검사를 위해서 버튼1 + 제목, 내용, 작성자의 값을 가져옴
+      const btn1 = document.getElementById('btn1');
+      btn1.addEventListener('click', () => {
+        const title = document.getElementById('title').value;
+        const content = editor.getData();
+        const writer = document.getElementById('writer').value;
+
+        if (title === "") {
+            alert('제목을 입력하세요.');
+            return false; //백엔드로 데이터를 전송하지 않음
+        }
+        if (content === "") {
+            alert('내용을 입력하세요.');
+            return false; 
+        }
+        if (writer === "") {
+            alert('작성자를 입력하세요.');
+            return false; 
+        }
+        console.log('유효성 통과후에 백엔드로 데이터 전송시점');
+      });
+    </script>
+
+
     </div>
-
-    
 </body>
 </html>

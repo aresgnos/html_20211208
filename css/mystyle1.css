@@ -1,3 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+width:100%;}
+
+
+header {
+    background-color: #666666;
+    color: blueviolet;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    float:left;
+    background-color: #ffdcdc;;
+    width: 20%;
+    height: 400px;
+    padding :10px;
+}
+
+article {
+    float:left;
+    background-color: #ffef64;
+    width: 70%;
+    height: 400px;
+    padding :10px;
+}
+
+aside {
+    float:left;
+    background-color: #ff9074;
+    width: 10%;
+    height: 400px;
+    padding :10px;
+}
+
+footer {
+    background-color: #8688ff;
+    text-align: center;
+    padding :10px;
+}
+
+section::after{
+    content:"";
+    clear: both;
+    display: block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+tbody {
+    text-align: center;
+}
+
 
  .mydiv {
     border:5px solid #ff7300; /* 테두리 */
@@ -6,8 +74,8 @@
 }
 
 .container {
-    width: 800px;
-    height: 500px;
+    width: 1000px;
+    height: 600px;
     padding: 30px;
     border: 5px solid #10ee5a
 }
