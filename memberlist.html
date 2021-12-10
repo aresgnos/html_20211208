@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memberlist.htmlt</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h3>회원목록</h3>
+
+        
+        <table border="1">
+            <thead>
+            <tr>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>나이</th>
+            </tr>
+            
+            </thead>
+
+            <tbody id="tbody">
+                <tr>
+                    <td>abc</td>
+                    <td>송세라</td>
+                    <td>90</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        const tbody = document.getElementById("tbody");
+
+        // axios, fetch 백엔드로부터 데이터를 받는 라이브러리
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET','http://ihongss.com/json/exam12.json');
+        xhr.send();
+
+        //백엔드 호출 후에 데이터가 전송 완료되면 
+        //데이터가 들어오는 타이밍과 사람들이 클릭하는 타이밍을 모르니까 listener로 지정
+        xhr.addEventListener('load', function(){
+            //어떤 데이터가 왔는지 출력
+            const data = JSON.parse(xhr.response); //{},{},{},{},{}
+            console.log(data);//{id: 'id1', name: '가나다1', age: 31}
+            console.log(typeof data)
+            
+            for(let tmp of data){
+                tbody.innerHTML +=
+                 "<tr>" +
+                    `<td>${tmp.id}</td>` +
+                    `<td>${tmp.name}</td>` +
+                    `<td>${tmp.age}</td>` +
+                "</tr>"
+            }
+        });
+        
+    
+    </script>
+</body>
+</html>

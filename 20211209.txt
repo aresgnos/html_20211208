@@ -1,0 +1,77 @@
+211209
+
+섹션 나누기 전에 밑바탕 하나 깔아야함.
+
+box-sizing:border-box;
+(center-box가 기본)
+
+style은 css로 모으기
+
+개발한게 제대로 되는지 확인하는 창=콘솔창
+console.log -> 크롬에서 f12, 콘솔창에 찍힘
+브라우저가 받아서 해석
+
+
+<자바스크립트>
+=>백엔드에서 오는 데이터를 받는다.
+ex) 아이디와 비밀번호를 입력하면
+자바스크립트가 받아서 백엔드로 준다.
+백엔드에서 받은 값을 자바스크립트가 받아서
+화면을 갱신한다.
+
+원래 html에 있었던 내용들을
+script가 변경 시킴.
+
+react와 vue는 자바스크립트가 가져가고
+중간 작업을 해서 주는 일을 간소화한다.
+
+타입이 정해져 있지 않기 때문에 
+들어간 데이터의 타입을 확인할 필요가 있다.
+
+html = 화면을 정돈되게 구성
+css = 화면 스타일
+자바스크립트 = 데이터를 받아서 변경시키거나
+백엔드로 보내주는 역할
+
+
+<script src="js/mylogin.js"></script>
+
+[<input />,<input /><input /] 이런식의 배열이
+너무 많은 경우는 반복가능
+for(const 임시변수 of 배열변수)
+=>  for(tmp of chk1)
+=제일 효율적
+이런식이라면 마지막에 배열된 것이 마지막으로 찍힘.
+
+
+https://ckeditor.com/ckeditor-5/download/
+
+** 안쪽에 있는 개체를 직접 줄이는게 아니라 바깥을 감싸고 있는
+div 박스를 만들어서 사이즈를 줄인다.
+
+** inline-block
+
+
+//btn2.addEventListener('click', function()})
+      btn2.addEventListener('click', () => {
+
+
+유효성 검사??
+
+프론트엔드로 가려면 사이트를 많이 찾아봐야한다.
+
+
+->const title = document.getElementById('title').value;
+이렇게 가져오면 유효성 검사에서
+if (title === "") {
+            alert('제목을 입력하세요.');
+            return false;
+
+->focus를 넣으려면
+const title = document.getElementById('title').value;에서
+value를 떼고
+const title = document.getElementById('title')
+if (title === "") {
+            alert('제목을 입력하세요.');
+            title.focus();
+            return false;

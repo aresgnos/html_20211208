@@ -40,7 +40,59 @@
                 </tr>
             </tbody>
         </table>
-
     </div>
+
+    <script>
+
+        //const a = 1;    console.log(a);    =>1
+        //const b = [1];  console.log(b[0]); =>1 (배열)
+
+        //<tbody>        [<tbody>]
+
+        //하나만 받으려면 const b1= document.getElementById
+
+        const b1 = document.getElementsByTagName('tbody');
+        console.log(typeof b1); //배열 object
+
+
+        //console.log(b1[0]);
+        console.log(b1[0].innerText); //화면에 보이는 것처럼 출력하라.
+        console.log('------------------');
+        console.log(b1[0].innerHTML); //태그 형태로 출력하라.   
+
+        b1[0].innerHTML +=   //기존 내용에 +
+        "<tr>" +
+            "<td>1111</td>" +
+            "<td>제목</td>" +
+            "<td>가나다</td>" +
+            "<td>24</td>" +
+            "<td>2021/12/08</td>" +
+        "</tr>";
+        
+
+        // 백엔드에서 데이터를 받아서 items에 보관한다고 가정!!
+        const items = [
+            {no:3, title:'제3', writer:'a30', hit:42, regdate:"2021/12/20"},
+            {no:4, title:'제4', writer:'a30', hit:12, regdate:"2021/12/20"}
+        ];
+
+        //[{},{}] => {}, {}
+        console.log("tmp--------------");
+        for(let tmp of items){
+            console.log(tmp.no, tmp.title, tmp.hit); //{no:4, title:제3, hit:42} tmp.키이름
+        
+
+        b1[0].innerHTML +=
+        "<tr>" +
+            `<td>${tmp.no}</td>` +
+            `<td>${tmp.title}</td>` +
+            `<td>${tmp.writer}</td>` +
+            `<td>${tmp.hit}</td>` +
+            `<td>${tmp.regdate}</td>` +
+        "</tr>";
+        
+    }   
+
+    </script>
 </body>
 </html>

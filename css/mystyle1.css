@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-.container {
-width:100%;}
-
-
 header {
     background-color: #666666;
     color: blueviolet;
@@ -77,13 +73,15 @@ tbody {
     width: 1000px;
     height: 600px;
     padding: 30px;
-    border: 5px solid #10ee5a
+    border: 3px solid #e6e6e6
 }
 
 .lbl1 {
-    width:180px;
+    width:100px;
     display: inline-block;
     margin-bottom: 8px;
+    border-left:3px solid rgb(255, 51, 0);
+    text-align: center;
 }
 
 .midiv1 {
@@ -91,3 +89,4 @@ tbody {
     display: inline-block;
 
 }
+

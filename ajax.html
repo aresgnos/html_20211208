@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax.htrml</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+</head>
+<body>
+    <div classs="container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>꽃받침 길이</th>
+                    <th>꽃받침 너비</th>
+                    <th>꽃잎 길이</th>
+                    <th>꽃잎 너비</th>
+                    <th>꽃의 품종</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+               
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        // tbody 태그 찾기
+        const tbody = document.getElementById('tbody');
+        // 백엔드 호출
+        let xhr = new XMLHttpRequest();
+        const url = 'https://raw.githubusercontent.com/domoritz/maps/master/data/iris.json'
+        xhr.open('GET', url);
+        xhr.send();
+
+        // 결과받기
+        xhr.addEventListener('load', function(){
+            //tbody에 innerHTML로 추가하기
+        
+        const data = JSON.parse(xhr.response); 
+        console.log(data);
+        console.log(typeof data);
+
+        for(let tmp of data){
+                tbody.innerHTML +=
+                 "<tr>" +
+                    `<td>${tmp.sepalLength}</td>` +
+                    `<td>${tmp.sepalWidth}</td>` +
+                    `<td>${tmp.petalLength}</td>` +
+                    `<td>${tmp.petalWidth}</td>` +
+                    `<td>${tmp.species}</td>` +
+                "</tr>"
+                 }
+                });                
+    </script>
+</body>
+</html>
