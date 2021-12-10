@@ -15,7 +15,7 @@
         <div class="mydiv1">
             <label class="lbl1">아이디</label>
             <input type="text" placeholder="아이디" id="abcd" />
-            <input type="button" value="중복확인" />
+            <input type="button" value="중복확인" id="btnIdCheck" />
         </div>
 
         <div class="mydiv1">
@@ -54,10 +54,12 @@
             <input type="button" value="회원가입" id=btn1 />
             <a href="login.html"><input type="button" value="로그인" /></a>
         </div>
-    
+    </div>
+
     <script>
         const id = document.getElementById('abcd');
         console.log(id);
+        const btnChk = document.getElementById('btnIdCheck');
         const pw = document.getElementById('1234');
         console.log(pw);
         const pw1 = document.getElementById('1234');
@@ -69,36 +71,73 @@
         const btn = document.getElementById('btn1');
         const chk1 = document.getElementById('chk1');
     
-        btn.addEventListener('click', function() {
-        if (id.value === "") {
-            alert('아이디를 입력하세요.');
-            id.focus();
-            return false; //백엔드로 전송하지 않음
-        }
-        if (pw.value === "") {
-            alert('암호를 입력하세요.');
-            pw.focus();
-            return false; 
-        }
+        btn.addEventListener('click', function() { 
+            if (id.value === "") {
+                alert('아이디를 입력하세요.');
+                id.focus();
+                return false; //벡엔드로 전송 하지 않음
+            }
+            
+            if (pw.value === "") {
+                alert('암호를 입력하세요.');
+                pw.focus();
+                return false; //벡엔드로 전송 하지 않음
+            }
 
-        // 같으냐 ===   같지않느냐 !==
-        if (pw.value !==pw1.value) {
-            alert('암호가 일치하지 않습니다.')
-            pw1.focus();
-            return false;
-    }
+            // 같으냐 ===    같지않느냐 !==
+            if(pw.value !== pw1.value) {
+                alert('암호가 일치하지 않습니다.')
+                pw1.focus();
+                return false;
+            }
 
-        if (chk1.checked === false){
-            alert('약관동의하세요.');
-            return false;  //백엔드로 전송하지 않음
-        }
+            if(chk1.checked === false ){
+                alert('약관동의하세요.');
+                return false; //벡엔드로 전송 하지 않음
+            }
 
-        console.log('백엔드로 데이터 전송');
-    });
+            console.log('벡엔드로 데이터 전송');
+        });
+
         
-    </script>
-    </div>
-        
+        //아이디를 입력할 때 실행
+        id.addEventListener('keyup', function(){
+            if( id.value.length > 0 ){
+                //백엔드 호출
+                const url = `http://ihongss.com/json/idcheck.json?userid=${id.value}`
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+
+                // 결과받기
+                xhr.addEventListener('load', function(){
+                    const data = JSON.parse(xhr.response); 
+                    // console.log(data)
+                    // {ret: 'n'} or {ret: 'y'}
+
+                    if(data.ret === 'y'){
+                        btnChk.value='사용불가';
+                    }
+                    else if(data.ret === 'n'){
+                        btnChk.value ='사용가능';
+                    }
+                    console.log(data);
+                    
+
+                    //백엔드로 현재의 아이디 값을 전달하면
+                    //백엔드에서 사용가능 사용불가를 알려줌
+                    //btnChk,value값을 사용가능, 사용불가로 변경
+                });
+            }
+            else {
+                btnChk.value = '중복확인';
+            }
+
+        });   
+    
+        </script>
+    
+    
 
 </body>
 </html>

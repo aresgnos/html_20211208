@@ -29,4 +29,22 @@
 
         // 백엔드로 아이디와 암호가 전송되는 시점
         console.log('restful + ajax를 이용한 전송');
+
+        const url = `http://ihongss.com/json/login.json?userid=${id.value}&userpw=${pw.value}`;
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+
+                xhr.addEventListener('load', function(){
+                const data = JSON.parse(xhr.response);
+                console.log(data); //{ret:'y'} or {ret:'n'}
+                if(data.ret === 'y'){
+                    alert('로그인 되었습니다.');
+                    window.location.href = "main.html"; //<a href="main.html">
+                }
+                else if(data.ret === 'n'){
+                    alert('아이디 또는 암호를 확인하세요.');
+                }
+                console.log(data);
+                });
     });

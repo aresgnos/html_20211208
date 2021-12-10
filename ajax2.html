@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax2.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <div class="container">
+        <h3>생존자</h3>
+        <table border="1">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <hr />
+        <h3>사망자</h3>
+        <table border="1">
+            <thead>
+
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const url="https://raw.githubusercontent.com/IBM/taxinomitis/master/resources/datasets/numbers/titanic.json"
+        let xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+
+                xhr.addEventListener('load', function(){
+                    const data = JSON.parse(xhr.response);
+                    const fields = data.metadata.fields;
+
+                    const thead = document.getElementsByTagName("thead")
+                
+                    let th = "<tr>" 
+                    for(let tmp of fields){
+                        th+=  `<th>${tmp.name}</th>`;
+                    }
+                    th += '</tr>';
+
+                    thead[0].innerHTML = th;
+                    thead[1].innerHTML = th;
+                    
+                    /////////////////////////////////////////////
+
+                    const tbody = document.getElementsByTagName("tbody")
+                    const s0 = data.data.survived; //[1,2,3,243,43,43]
+                    for(let tmp of s0) {
+                        tbody[0].innerHTML +=
+                        "<tr>"+
+                            `<td>${tmp[0]}</td>` +
+                            `<td>${tmp[1]}</td>` +
+                            `<td>${tmp[2]}</td>` +
+                            `<td>${tmp[3]}</td>` +
+                            `<td>${tmp[4]}</td>` +
+                            `<td>${tmp[5]}</td>` +
+                            `<td>${tmp[6]}</td>` +
+                        "</tr>";
+                    }
+
+                    const s1 = data.data.did_not_survive; //[1,2,3,243,43,43]
+                    for(let tmp of s1) {
+                        tbody[1].innerHTML +=
+                        "<tr>"+
+                            `<td>${tmp[0]}</td>` +
+                            `<td>${tmp[1]}</td>` +
+                            `<td>${tmp[2]}</td>` +
+                            `<td>${tmp[3]}</td>` +
+                            `<td>${tmp[4]}</td>` +
+                            `<td>${tmp[5]}</td>` +
+                            `<td>${tmp[6]}</td>` +
+                        "</tr>";
+                    }
+            });
+    </script>
+
+</body>
+</html>
