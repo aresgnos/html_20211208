@@ -1,0 +1,110 @@
+s201211210
+
+console=츨력
+변수(보관하는 방법)=const, let, var
+
+console.log('aaaa');
+
+        const a1 = 1;  //변수설정시 값을 1로 세팅, 변경할 수 없는 변수
+        //a1 = 2;      // 설정된 변수에 대해서 2로 변경
+
+        //변경가능한 변수
+        let a2 = 1;
+        a2 = 2;
+
+        var a3 = 1;
+        a3 = 2;
+
+        //배열          (0,         1,       2)
+        const names = ['가나다', '나다라', '마바사'];
+        console.log(names[1]);
+        const ages  = [12, 45, 67]; //67만 출력
+        console.log(ages[2]);
+        const score = [89, 90, 30]; //89만 출력
+        console.log(score[0]);
+
+        // json {키 : 값} 백엔드에선 이렇게 줘야 좋다.
+        const names1 = [
+            {name:'가나다', age:34, score:45},
+            {name:'나다라', age:44, score:55},
+            {name:'마바사', age:54, score:65}
+        ];
+        console.log(names1[2]); // {name:'마바사', age:54, score:65}
+        console.log(names1[2].score) // 65
+        console.log(names1[2].name) // '마바사'
+        console.log(names1[2].ages) // 54
+
+여러개의 배열이 올 경우
+반복문을 쓴다.
+ex) for(let tmp of items){
+
+데이터가 들어오는 타이밍과 사람들이 클릭하는 타이밍을 모르니까 listener로 지정
+listener는 언제들어올지 모른다. 리스너는 받는 시간이 좀 있다.
+그러나 순서는 알수는 없다.
+
+자바스크립트는 type이 정해져있지 않기 때문에
+type을 확인해야한다.
+string, object, array, json
+
+ const items = [
+            {userid : 'a2', username:'가1', userage:23},
+            {userid : 'a3', username:'가2', userage:33},
+            {userid : 'a4', username:'가3', userage:43},
+            {userid : 'a5', username:'가4', userage:53},
+            {userid : 'a6', username:'가5', userage:63},
+        ];
+        console.log(items);
+        console.log(typeof items);//object  array, json
+;
+        for(let tmp of items) {
+            tbody.innerHTML +=
+            "<tr>" +
+                    `<td>${tmp.userid}</td>` +
+                    `<td>${tmp.username}</td>` +
+                    `<td>${tmp.userage}</td>` +
+            "</tr>"
+        }
+
+ctrl+? =주석 잡기
+
+
+btn.addEventListener('click', function() {
+        if (id.value === "") {
+            alert('아이디를 입력하세요.');
+            id.focus();
+            return false; //백엔드로 전송하지 않음
+        }
+        if (pw.value === "") {
+            alert('암호를 입력하세요.');
+            pw.focus();
+            return false; 
+        }
+
+        // 같으냐 ===   같지않느냐 !==
+        if (pw.value !==pw1.value) {
+            alert('암호가 일치하지 않습니다.')
+            pw1.focus();
+            return false;
+    }
+
+        if (chk1.checked === false){
+            alert('약관동의하세요.');
+            return false;  //백엔드로 전송하지 않음
+        }
+
+        console.log('백엔드로 데이터 전송');
+
+
+
+* 코드들 경계선 잡기 - 같은 종류끼리 닫아본다.
+* 소스 코드 정렬하기
+
+경계선을 지키며 짜는 방법!!
+
+=괄호 열고 공간 확보하고 코드 짜기
+=괄호 닫기
+=괄호 하나 열리면 탭으로 무조건 밀기
+if문의 경계 알기
+
+metadata
+data.data(데이터의 데이터)
