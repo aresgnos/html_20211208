@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex02.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="container">
+        <h3>실습2 - 구구단</h3>
+        <input type="number" id="n1" />
+        <input type="button" id="b1" value="구구단 출력"/>
+        <div id="o1">구구단 출력</div>
+
+
+    </div>
+
+    <script>
+
+        // // (초기값; 조건; 증가값)
+        // for(let i=1; i<3; i++){
+        //     console.log(i);
+        // }
+
+        const n1 = document.getElementById('n1');
+        const btn = document.getElementById('b1');
+        const o1 = document.getElementById('o1');
+
+        b1.addEventListener('click', function(){
+            const sum = Number(n1.value);
+
+            //인덱스가 필요할 때
+            for(let i=1; i<10; i++){ // 1 2 3 4 5 6 7 8 9
+                o1.innerHTML +=
+                `${n1.value} * ${i} = ${Number(n1.value)*i} <br />`;   
+            }
+           
+        });
+
+        // o1.innerHTML += "<hr />";
+        // const arr = [1,2,3,4.5.6.7.8.9]; // arr[0], arr[1], arr[2], arr[3]
+        // for(let tmp of arr){
+            o1.innerHTML +=
+                `${n1.value} * ${i} = ${Number(n1.value)*tmp} <br />`;   
+        //     
+        // }
+
+        
+        
+    </script>
+    
+</body>
+</html>

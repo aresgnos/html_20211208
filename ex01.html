@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex01.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <input type="number" id="num1" />
+        <input type="number" id="num2" />
+        <input type="button" id="btn1" 
+        value="두 수의 합이 5의 배수인지 확인" />
+        <div id="out1">5의 배수 or 5의 배수 아님으로 표시</div>
+        
+    </div>
+    
+    <script>
+        const n1 = document.getElementById('num1');
+        const n2 = document.getElementById('num2');
+        const btn = document.getElementById('btn1');
+        const out= document.getElementById('out1');
+
+    
+        btn1.addEventListener('click', function(){
+            const sum = Number(num1.value) + Number(num2.value);
+
+            if(sum % 5 === 0){
+                out1.innerHTML = '5의 배수';
+            }
+            else {
+                out1.innerHTML = '5의 배수 아님';
+            }
+            
+
+        });
+
+    
+
+    </script>
+</body>
+</html>

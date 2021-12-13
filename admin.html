@@ -17,11 +17,24 @@
 
         <div id="menu1">
             <h3>물품관리</h3>
+            <input type="text" id="txt1" placeholder="숫자1" />
+            <input type="text" id="txt2" placeholder="숫자2" />
+            <input type="text" id="txt3" placeholder="+ - * / %" />
+            <input type="button" id="btn1" value="계산하기" />
+            <div id="out1">결과표시</div>
+            
         </div>
 
 
         <div id="menu2">
             <h3>물품등록</h3>
+            <div id="item">
+                <input type="text" />
+                <input type="text" />
+                <input type="text" />
+            </div>
+                <input type="button" value="항목추가" id="btnadd" />
+                <input type="button" value="항목삭제" id="btndel" />
         </div>
 
         <div id="menu3">
@@ -51,12 +64,72 @@
             m2.style.display="none";
             m3.style.display="none";
             m4.style.display="none";
+
+            //1. selctor 5개
+            const t1 = document.getElementById('txt1');
+            const t2 = document.getElementById('txt2');
+            const t3 = document.getElementById('txt3');
+            const btn = document.getElementById('btn1');
+            const out = document.getElementById('out1');
+
+            //버튼 event
+            btn1.addEventListener('click', function(){
+                if(txt3.value === '+'){
+                    out1.innerHTML = Number(txt1.value) + Number(txt2.value);
+                }
+                else if(txt3.value === '-'){
+                    out1.innerHTML = Number(txt1.value) - Number(txt2.value);
+                }
+                else if(txt3.value === '*'){
+                    out1.innerHTML = Number(txt1.value) * Number(txt2.value);
+                }
+                else if(txt3.value === '/'){
+                    out1.innerHTML = Number(txt1.value) / Number(txt2.value);
+                }
+                else if(txt3.value === '%'){
+                    out1.innerHTML = Number(txt1.value) % Number(txt2.value);
+                }
+            });
         }
+
         else if(window.location.search === '?menu=2'){
             m1.style.display="none";
             m2.style.display="";
             m3.style.display="none";
             m4.style.display="none";
+
+            // selector 수행
+            const btnadd = document.getElementById('btnadd');
+            const btndel = document.querySelector("#btndel");
+            const item = document.querySelector("#item");
+
+            btnadd.addEventListener('click', function(){
+                //<input>
+                const i1 = document.createElement("input");
+                //<input type="text"/>
+                i1.setAttribute("type", "text");
+                //<input type="text" style="width:50px" />
+                i1.setAttribute("style", "width:50px;");
+                item.appendChild(i1);
+                //item.innerHTML += `<input type="text" style="width:50px" />
+            });
+
+                // <img src="imgs/aaa.jpg" sytle="width50px;height50px">
+                const i2 = document.createElement("img");
+                i2.setAttribute("src", "imgs/aaa.jpg");
+                i2.setAttribute("style", "width:50px;height:50px;");
+                item.appendChild(i2);
+
+            btndel.addEventListener('click', function(){
+                console.log(item.childElementCount);
+                // 자식이 존재하면 <div>태그에 태그들이 있다면
+                if(item.childElementCount>0){
+                    item.removeChild(item.lastChild); //삭제 수행
+                    item.removeChild(item.lastChild); //삭제수행
+                }
+
+
+            });
         }
         else if(window.location.search === '?menu=3'){
             m1.style.display="none";
