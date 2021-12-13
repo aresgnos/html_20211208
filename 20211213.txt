@@ -1,0 +1,18 @@
+20211213
+
+file.addEventListener('change', function(e){
+변경되는 데이터는 fucnctiom(여기에=변수) 넣아야함
+
+자바스크립트는 이런 형태로 되어있다.
+e<= {isTrusted:trru , aaa:a1; bbb:'b1}
+
+console에서 target/files (파일에 대한 정보)
+
+꺼내서 찾으려면
+console에서
+(~~.~~.~~)
+
+
+<!--
+설명
+-->
