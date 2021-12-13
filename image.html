@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>image.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h3>이미지 첨부 기본</h3>
+        <img src="imgs/defalut.png" id="img"
+        style="width:100px; height:100px;"/>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" id="file"/>
+            <input type="button" value="이미지업로드" />
+        </form>
+
+        <hr />
+        <h3>2. 이미지 첨부 숨김</h3>
+        <img src="imgs/defalut.png" id="img1"
+        style="width:100px; height:100px; cursor:pointer"/>
+        <input type="file" id="file1" style="display: none;"/>
+
+        <hr /
+        <h3>3. 이미지 n개 첨부</h3>
+        <input type="file" id="file2" multiple />
+        <div id="out2"></div>
+    </div>
+
+    <script>
+        // selector 수정
+        const file2 = document.getElementById("file2");
+        const out2 = document.querySelector("#out2")
+
+        file2.addEventListener('change', function(e) {
+            out2.innerHTML="";
+            console.log(e);
+            if(e.target.files) {
+                for (let tmp of e.target.files){
+                    const reader = new FileReader();
+                    reader.addEventListener('load',function(e1){
+                        console.log(e1.target);
+                        out2.innerHTML += 
+                            `<img src="${e1.target.result}" style=width:100px; height:100px">`
+                    });
+                    reader.readAsDataURL(tmp);
+                }
+            }
+            else {
+
+            }
+        });
+
+
+
+        // 1 (1,2,3 같다.)
+        // file2.addEventListener('change', function(e) {
+            
+        // });
+
+        // //2
+        // file2.addEventListener('change', (e) => {
+
+        // });
+
+        // //3
+        // file2.onchange = function(e){
+
+        // };
+
+
+
+
+
+        // 위의 태그 찾기
+        // 위에있는 태그중에서 id가 file인 것 찾는 방법 2가지
+        const file1 = document.getElementById("file1");
+        // const file=document.querySelector("#file");
+
+        const img1=document.querySelector("#img1");
+
+        img1.addEventListener('cilck', function(){
+            file1.click();
+            });
+
+            file1.addEventListener('change', function(e) {
+                if (e.target.files[0]){
+                    console.log(e.target.files[0]);
+                    const reader= new FileReader();
+                    reader.addEventListener('load', function (e1){
+                        reader.readAsDataURL(e.target.files[0]);
+                    });
+                }
+                else{
+                    img1.src= 'imgs/default.png';
+                }
+        });
+
+     ///////////////////////////////////////////////////////
+     //1번 예제
+
+        const file = document.getElementById("file"); 
+        const img  = document.querySelector("#img");
+
+            file.addEventListener('change', function(e){
+                console.log(e.target.files[0])
+                if(e.target.files[0]){
+                //파일 읽기 위한 라이브러리(기본제공)
+                const reader = new FileReader();
+                // 파일을 읽음
+                reader.readAsDataURL(e.target.files[0]);
+                reader.addEventListener('load', function(e1){ 
+                    console.log('파일읽기 완료시점');
+                    console.log(e1)
+                    img.src = e1.target.result;
+                });
+            }
+            else{
+                console.log('첨부하지 않은 상태');
+                img.src='img/deflalut.png';
+            }
+        });
+    </script>
+</body>
+</html>
