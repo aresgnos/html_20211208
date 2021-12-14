@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>storage.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container">
+        <h3>저장소</h3>
+        <input type="text" id="userid" placeholder="아이디" /><br />
+        <input type="password" id="userpw" placeholder="암호" /><br />
+        <input type="checkbox" id="chk" /> 아이디/암호저장 <br />
+        <input type="button" id="btn" value="로그인" /><br />
+    </div>
+
+    <script>
+        const userid = document.getElementById('userid');
+        const userpw = document.getElementById('userpw');
+        const chk = document.getElementById('chk');
+        const btn = document.getElementById('btn');
+
+        console.log(typeof localStorage.getItem("CHK"));
+
+        // 비교값 "1" ==1       
+        //비교값과 타입 일치 "1"===1
+        if(localStorage.getItem("CHK") === "1"){
+            userid.value = localStorage.getItem("UID");
+            userpw.value = localStorage.getItem("UPW");
+            btn.checked = localStorage.getItem("CHK");
+        }
+        
+        //chk.onchange = function(){}
+        //chk.addEventListener('change', function() {});
+        //chk.addEventListener('change', () => {}
+
+
+        chk.addEventListener('change', () => {
+            if(chk.checked === true){
+                localStorage.setItem("UID", userid.value);
+                localStorage.setItem("UPW", userpw.value);
+                localStorage.setItem("CHK", 1);
+            }
+            else {
+                localStorage.removeItem("UID");
+                localStorage.removeItem("UPW");
+                localStorage.removeItem("CHK");
+            }
+
+        });
+    </script>
+
+</body>
+</html>

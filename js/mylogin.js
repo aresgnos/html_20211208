@@ -30,6 +30,9 @@
         // 백엔드로 아이디와 암호가 전송되는 시점
         console.log('restful + ajax를 이용한 전송');
 
+        // "url"
+        // `url=${id.value}' 작은 따옴표는 대체 적용 되는 것이 있을 때
+
         const url = `http://ihongss.com/json/login.json?userid=${id.value}&userpw=${pw.value}`;
                 let xhr = new XMLHttpRequest();
                 xhr.open('GET', url);

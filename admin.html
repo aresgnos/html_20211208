@@ -112,13 +112,13 @@
                 i1.setAttribute("style", "width:50px;");
                 item.appendChild(i1);
                 //item.innerHTML += `<input type="text" style="width:50px" />
-            });
-
-                // <img src="imgs/aaa.jpg" sytle="width50px;height50px">
+            
+                // <img src="imgs/aaa.jpg" sytle="width:50px;height:50px">
                 const i2 = document.createElement("img");
                 i2.setAttribute("src", "imgs/aaa.jpg");
                 i2.setAttribute("style", "width:50px;height:50px;");
                 item.appendChild(i2);
+        });
 
             btndel.addEventListener('click', function(){
                 console.log(item.childElementCount);

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dtable.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container1">
+        <a href="main.html">메인으로</a>
+        <h3>데이터테이블 실습</h3>
+        <table border="1" id="table">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>지역</th>
+                    <th>인구수</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- // 제이쿼리로 만들어진 라이브러리기 때문에 
+        제이쿼리가 먼저 오고(제이쿼리를 쓰겠다는 것)
+        그 다음에 라이브러리가 와야한다. -->
+
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    
+    <script>
+        const tbody = document.getElementsByTagName("tbody");
+        for(let i=0; i<100; i++){
+            tbody[0].innerHTML +=
+            `<tr>`+
+                `<td>${i}</td>` +
+                `<td>부산${i}</td>` +
+                `<td>1000</td>` +
+            `</tr>`;
+        }
+        
+    // const table = document.getElementById("table"); 제이쿼리기 때문에 (X)
+    $(function(){ //jquery문법을 사용함.
+        for(let i=3;i<6;i++){
+                $('tbody').append(
+                    `<tr>` +
+                        `<td>${i}</td>` +
+                        `<td>부산${i}</td>` +
+                        `<td>1000</td>` +
+                    `</tr>`
+                );
+            }
+            $('#table').DataTable(); // 제이쿼리에서 찾을 때
+        });
+    </script>
+</body>
+</html>

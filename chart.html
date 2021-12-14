@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chart.html</title>
+    <link href="css/mystyle1.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container1">
+        <h3>차트 실습</h3>
+        <div style="width:800px">
+            <canvas id="mychart"></canvas>
+        </div>
+        <input type="button" value="차트데이터변경" id="btn" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        
+        const ctx = document.getElementById("mychart")
+                        .getContext("2d");
+
+        //표시할 chart의 데이터 및 색상 설정
+        const config = {
+            type : 'bar',
+            data : {
+                labels : ['A5','B5','C5','D5','E5','F5'],
+                datasets :[{
+                    label : '성적표',
+                    data:[23,46,34,35,89,55],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        }
+
+        //실제로 chart가 생성되는 시점
+        const mychart = new Chart(ctx, config);
+
+        // config.data.datasets[0].data; //config 밑에 data밑에 datasets은 배열의 data 
+        const btn = document.getElementById("btn");
+        btn.addEventListener('click', () => {
+            let data = config.data.datasets[0].data;
+            console.log(Math.floor( Math.random() * 100 + 1));
+            console.log(data); //[23, 45, 45, 454, 45445, 4545, 54]
+            for(let i=0;i<data.length;i++){
+                data[i] = Math.floor( Math.random() * 100 + 1);
+            } 
+            //console.log(math.random()) = 0~1사이의 숫자를 랜덤       
+            
+            4//변경된 데이터 적용해서 다시 그리기
+            mychart.update();
+        });
+
+
+    </script>
+</body>
+</html>

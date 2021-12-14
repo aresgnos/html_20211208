@@ -1,7 +1,10 @@
 * {
     box-sizing: border-box;
 }
+/* 기본값은 content-box */
 
+
+/* padding : 안쪽 네방향 여백 */
 header {
     background-color: #dbcfb0;
     color: #ffffff;
