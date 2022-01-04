@@ -37,6 +37,7 @@
         // 결과받기
         xhr.addEventListener('load', function(){
             //tbody에 innerHTML로 추가하기
+            //정상 동작 완료되는 시점
         
         const data = JSON.parse(xhr.response); 
         console.log(data);
@@ -52,7 +53,9 @@
                     `<td>${tmp.species}</td>` +
                 "</tr>"
                  }
-                });                
+                });
+                
+                //정상동작완료X
     </script>
 </body>
 </html>

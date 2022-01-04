@@ -1,0 +1,71 @@
+2021215
+
+- nodejs 다운로드 v16.13.1
+https://nodejs.org/ko/
+
+
+-- Node.js 기반 vue 프로젝트 생성 프로그램 설치
+CMD> npm install vue -g
+CMD> npm install vue @vue/cli -g
+
+-- 설치 확인
+CMD> vue --version
+    4.5.15설치됨.
+
+
+-- 프로젝트 생성
+CMD> vue create vue_20211215
+
+-- 프로젝트를 실행하기 위한 폴더 이동
+CMD> cd vue_20211215
+
+다운받은 폴더로 이동하기,
+cmd - npm install
+이걸 할 때 패키지.json이 있는 곳에서
+설치해야한다.
+
+-- 서버 구동
+npm run serve
+
+localhost:8080
+
+-- serve : 개발용 버전으로 앱 실행
+$ npm run serve
+  
+
+-- vscode extension pack 설치
+
+파일명 :  jconfig.js
+{ 
+    "include": [ "./src/**/*" ] 
+}
+
+git에 올릴 때 node로 올림.
+
+
+
+template = 화면
+script = 자바
+
+cmd에서 ctrl+c=작업 종료
+
+vue에서 색깔이 연하게 나오는게 있으면 안된다.
+사용할걸 써야함.
+
+
+@import '../assets/css/mystyle1.css';
+
+template는 화면을 만들고
+export~ 는 데이터 화면에 대한 변경요소를 적용
+export에서 methods에 데이터를 주고
+methods는 데이터베이스
+
+템플릿에서 입력한 값은
+export~ method 상태변수로 가서
+method에서 백엔드로 간다.
+그러므로 데이터베이스 값을 바꿔주면 화면의 값도 바뀐다.
+
+/* 상태변수를 바꾸면 화면도 바뀐다.
+화면을 바꾸고 싶으면 해당하는 상태변수의 값을 바꾼다.
+
+element-plus.org(컴포넌트 사이트)
