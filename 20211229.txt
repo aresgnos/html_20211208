@@ -1,0 +1,40 @@
+20211229
+
+<백엔드>
+http://localhost:3000/board/delete?no=11
+에서 no 뒤는 query로 처리함
+
+DB접속은 시간이 걸리기 때문에 await를 붙인다.
+
+포스트맨에서 데이터를 보내보고 cmd창에 찍히는 정보를
+본 후, if문을 만듦
+
+양이 많은 정보는 query로 보낼 수 없다 => body로
+
+{"no":56}
+
+글번호는 순차적이지 않기 때문에 이전글, 다음글은
+현재 글번화 와야된다. (중간 중간 삭제 됐을수도 있기 때문)
+
+const result = await collection.find(
+            {_id: {$lt : no } }, //조건
+        ).sort({_id:-1}).limit(1).toArray(); // find를 쓰면 toArray로 변환시켜야함.
+
+백엔드에서 이미지 첨부하려면 cmd에서 설치 해줘야함
+cmd > npm i multer --save
+
+내용과 데이터베스와 파일이 같이 보관돼야 좋다.
+
+이미지, 파일을 첨부할 땐 포스트맨에서 post로 바꾸고
+body, form-data key는 file, 옆에 file로 바꿔줌
+
+mongodb에서
+데이터가 쌓이는 곳 / 도와주기 위한 시퀀스
+시퀀스에 쌓이면 안된다.
+
+시퀀스 보드 추가
+db.sequence.insert([
+    {_id : 'SEQ_BOARD_NO', seq : 1},
+    {_id : 'SEQ_BOARDREPLY_NO', seq : 1},
+    {_id : 'SEQ_ITEM_NO', seq  : 10001}
+]);

@@ -1,0 +1,148 @@
+20211228 
+
+<백엔드>
+해당 폴더 가서
+cmd> nodemon --inspect ./bin/www 로 서버 실행
+postman, mongodb 시행
+
+
+
+
+시퀀스(오라클) : 숫자를 자동으로 부여
+ai(mySQL) : 숫자를 자동으로 부여
+mongodb는 그 기능이 없기 때문에 트릭으로
+
+db.seqboard.insert({
+    _id : 'SEQ_BOARD_NO',
+    seq : 1
+});
+=> 보드를 만들어줌.
+
+const no = await coll.findOneAndUpdate(
+        {_id:'SEQ_BOARD_NO'}, { }
+    ); 
+
+=> _id는 mongodb에서 tree에서 볼 수 있음.
+
+화면 만들 때 글번호, 작성시간은 만들지 말아야한다.
+
+** const의 변수는 중복될 수 없다.
+
+데이터베이스 연결, DB선택, 컬렉션 선택
+
+순서 = 접속->DB 선택 -> 컬렉션선택 -> CRUD(추가, 수정, 삭제, 조회)
+
+컬렉션마다 키를 잡아놔야함.
+
+get (vue에 주는 것)
+포스트맨에서는 paramas
+백엔드에서 프론트로 글정보를 줄 때는 글번호를 준다.
+
+왜 문잔데?? 35
+
+'', "" 안에 있으면 문자
+아니면 숫자
+
+로직, 어떤 항목이 들어오고 어떻게 나갈것이냐.
+ex) 게시물 상세내용을 받으려면 무엇을 받아야하냐 = 글번호
+
+포스트맨 앞에 get, put 상황에 맞춰서 잘 바꾸기
+
+try, catch문을 다 넣어야 오류가 안 난다.
+중간에 확인하면 오류난다~~!!
+
+query는 params로
+
+
+<template>
+    <div>
+        <h3>Board1</h3>
+    
+    <el-button type="primary" @click="handleWrite">글쓰기</el-button>
+    <el-table :data="items" style="width: 100%;cursor:pointer;" 
+        @row-click="rowClick">
+        <el-table-column prop="no" label="글번호" width="180" />
+        <el-table-column prop="title" label="제목" width="180" />
+        <el-table-column prop="writer" label="작성자" width="180" />
+        <el-table-column prop="hit" label="조회수" width="180" />
+        <el-table-column prop="regdate" label="날짜" width="180" />
+    </el-table>
+
+    <el-pagination layout="prev, pager, next" :total="200"
+    @current-change="currentChange"></el-pagination>
+
+
+    </div>
+</template>
+
+<script>
+
+import {useStore} from 'vuex';
+
+    export default {
+       created() {
+            this.handleData()
+        },
+        data(){
+            return{
+                items : [],
+                page : 1,
+                store : useStore(),
+            }
+        },
+
+         methods:{
+             handleWrite(){
+                 this.$router.push({name : 'BoardWrite'});
+             },
+             
+              rowClick(row){
+                console.log('Board.vue => rowClick', row);
+                this.$router.push({
+                    name :'BoardOne',
+                    query : {bon: 1 ,no : row.no}
+                    // 어느 게시판, 어느 페이지에서 왔는지
+                });
+            },
+
+            // 페이지네이션 컴포넌트에서 페이지를 클릭할 때마다
+            // 무슨 페이지를 클릭하는지 알려주는 것
+            // 데이터변수로 page를 가지고 있어야함.
+            currentChange(page){
+                console.log('Board.vue => currentChange', page);
+                this.page = page;
+                this.handleData();
+            },
+
+            //  async handleData(){
+            //     const url = `http://ihongss.com/json/board.json?page=${this.page}`;
+            //     const headers = {"Content-Type":"application/json"};
+
+            //     const response = await axios.get(url, {headers:headers});
+            //     if(response.data.ret === 'y') {
+            //         this.items = response.data.data;
+            //     }
+            //     console.log(url);
+            //     console.log(response);         
+
+            //백엔드에서 필요한 데이터를 받아서 itmes에 넣음
+            async handleData(){
+                // action에 정의되어 있는 hadleData 호출
+                await this.store.dispatch('handleData', {page:1});
+
+                // store mutation 호출(공통의 값 변경하는 역할-동기방식)
+                // this.store.commit('setConter', 30);
+
+                // store의 getters 호출(공통의 값 가져오는 역할)
+               this.items = this.store.getters.getItems;
+            }
+            
+            
+           
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>
